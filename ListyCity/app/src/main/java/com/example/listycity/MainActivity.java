@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         cityList = findViewById(R.id.city_list);
 
-        String []cities = {"Edmonton"};
+        String []cities = {"Edmonton", "Middle of no where"};
 
         dataList = new ArrayList<>();
         dataList.addAll(Arrays.asList(cities));
