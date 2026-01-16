@@ -33,13 +33,15 @@ public class MainActivity extends AppCompatActivity {
 
         cityList = findViewById(R.id.city_list);
 
-        String []cities = {"Edmonton","Middle of no where" ,"Vancouver", "Moscow", "Sydney", "Berlin", "Vienna", "Tokyo", "Beijing", "Osaka", "New Delhi"};
+        String []cities = {"Edmonton","Middle of no where"};
 
         dataList = new ArrayList<>();
         dataList.addAll(Arrays.asList(cities));
 
         cityAdapter = new ArrayAdapter<>(this, R.layout.content, dataList);
         cityList.setAdapter(cityAdapter);
+
+
 
     }
 }

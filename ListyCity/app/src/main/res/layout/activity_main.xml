@@ -9,10 +9,29 @@
 
     <ListView
         android:id="@+id/city_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="411dp"
+        android:layout_height="679dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="51dp">
+
 
     </ListView>
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="Add city"
+        tools:layout_editor_absoluteX="dp"
+        tools:layout_editor_absoluteY="dp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="Delete city"
+        tools:layout_editor_absoluteX="260dp"
+        tools:layout_editor_absoluteY="dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
