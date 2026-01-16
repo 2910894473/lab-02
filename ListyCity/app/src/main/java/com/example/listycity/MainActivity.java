@@ -33,7 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
         cityList = findViewById(R.id.city_list);
 
+<<<<<<< Updated upstream
         String []cities = {"Edmonton", "Middle of no where"};
+=======
+        String []cities = {"Edmonton", "Vancouver", "Moscow", "Sydney", "Berlin", "Vienna", "Tokyo", "Beijing", "Osaka", "New Delhi"};
+>>>>>>> Stashed changes
 
         dataList = new ArrayList<>();
         dataList.addAll(Arrays.asList(cities));
