@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.gestures.rememberScrollableState
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,8 +14,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.keepScreenOn
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.listycity.ui.theme.ListyCityTheme
 
 class MainActivity : ComponentActivity() {
@@ -26,6 +32,7 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     CityListScreen(
                         cities = cityRepository.cities,
+                        onAddCity = { cityRepository.addCity(it)},
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -50,11 +57,29 @@ class CityRepository {
 @Composable
 fun CityListScreen(
     cities: List<String>,
+    onAddCity: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    var newCityName by remember {mutableStateListOf("")}
+
+    Column(modifier = Modifier.fillMaxSize()) {
+        
+    }
+
     LazyColumn(modifier = modifier.fillMaxSize()) {
         items(cities) { city ->
             CityRow (city = city)
         }
     }
+}
+
+@Composable
+fun CityRow(city: String) {
+    Text(
+        text = city,
+        fontSize = 28.sp,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 18.dp, vertical = 14.dp)
+    )
 }
