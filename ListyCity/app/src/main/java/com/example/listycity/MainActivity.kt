@@ -80,7 +80,7 @@ fun CityListScreen(
     var newCityName by remember {mutableStateOf("")}
     var selectedCity by remember { mutableStateOf<String?>(null) }
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = modifier.fillMaxSize()) {
         Row(modifier = Modifier.padding(16.dp)) {
             OutlinedTextField(
                 value = newCityName,
@@ -117,7 +117,7 @@ fun CityListScreen(
             Text ("Delete City")
         }
 
-        LazyColumn(modifier = modifier.fillMaxSize()) {
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(cities) { city ->
                 CityRow (
                     city = city,
