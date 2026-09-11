@@ -1,10 +1,12 @@
 package com.example.listycity
 
+import android.R.attr.onClick
 import android.R.attr.value
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.rememberScrollableState
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -42,6 +44,7 @@ class MainActivity : ComponentActivity() {
                     CityListScreen(
                         cities = cityRepository.cities,
                         onAddCity = { cityRepository.addCity(it)},
+                        onRemoveCity = {cityRepository.removeCity(it)},
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -61,15 +64,21 @@ class CityRepository {
     fun addCity(city: String) {
         _cities.add(city)
     }
+
+    fun removeCity(city:String) {
+        _cities.remove(city)
+    }
 }
 
 @Composable
 fun CityListScreen(
     cities: List<String>,
     onAddCity: (String) -> Unit,
+    onRemoveCity: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     var newCityName by remember {mutableStateOf("")}
+    var selectedCity by remember { mutableStateOf<String?>(null) }
 
     Column(modifier = Modifier.fillMaxSize()) {
         Row(modifier = Modifier.padding(16.dp)) {
@@ -95,25 +104,43 @@ fun CityListScreen(
             Text ("Add City")
         }
 
-        
+        Button(
+            onClick = {
+                val cityToRemove = selectedCity
+                if (cityToRemove != null) {
+                    onRemoveCity(cityToRemove)
+                    selectedCity = null
+                }
+
+            }
+        ) {
+            Text ("Delete City")
+        }
 
         LazyColumn(modifier = modifier.fillMaxSize()) {
             items(cities) { city ->
-                CityRow (city = city)
+                CityRow (
+                    city = city,
+                    onClick = {
+                        selectedCity = city
+                    }
+                )
             }
         }
     }
-
-
 }
 
 @Composable
-fun CityRow(city: String) {
+fun CityRow(
+    city: String,
+    onClick: () -> Unit
+) {
     Text(
         text = city,
         fontSize = 28.sp,
         modifier = Modifier
             .fillMaxSize()
+            .clickable(onClick = onClick)
             .padding(horizontal = 18.dp, vertical = 14.dp)
     )
 }
